@@ -6,9 +6,5 @@ module.exports = {
         title: "项目模板",
         description: "",
         keywords: ""
-    },
-    base:{
-        // name:"/shuyou-web/"
-        name:"/"
     }
 }
