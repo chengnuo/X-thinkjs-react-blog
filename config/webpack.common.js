@@ -33,10 +33,11 @@ module.exports = {
       query: {
         presets: ['es2015', 'stage-0', 'react'],
         plugins: [
-          ["import", { // 用于 antd 的按需加载 js/css
-            "libraryName": "antd",
-            "style": "css"
-          }]
+            "transform-decorators-legacy",
+            ["import", { // 用于 antd 的按需加载 js/css
+                "libraryName": "antd",
+                "style": "css"
+            }]
         ],
         cacheDirectory: true
       }

@@ -22,6 +22,15 @@ const routes = {
         })
       }
     },
+    // 登录
+    {
+      path: 'userLogin',
+      getComponent(nextState, cb) {
+        require.ensure([], (require) => {
+          cb(null, require('PAGES/userLogin').default)
+        })
+      }
+    },
     // 404
     {
       path: '*',
