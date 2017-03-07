@@ -65,7 +65,9 @@ module.exports = {
       UTILS: path.join(SRC_PATH, 'utils'),
       MIXINS: path.join(SRC_PATH, 'utils/mixins'),
       PAGES: path.join(SRC_PATH, 'pages'),
-      COM: path.join(SRC_PATH, 'components')
+      COM: path.join(SRC_PATH, 'components'),
+      AREACT: path.join(SRC_PATH, 'areact'),
+      STATIC: path.join(SRC_PATH, 'static'),
     }
   },
   plugins: [
