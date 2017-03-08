@@ -5,9 +5,6 @@ const createForm = Form.create;
 const FormItem = Form.Item;
 @createForm()
 export default class UserLogin extends Component {
-    static contextTypes = {
-        router: React.PropTypes.object.isRequired
-    }
     static defaultProps = {}
     static propTypes = {}
 
@@ -62,11 +59,11 @@ export default class UserLogin extends Component {
             <div style={{overflow: 'hidden'}} className="login-bg" >
                 <div className="login-main">
                     <div className="login-title">
-                        <h3>数由管理后台</h3>
+                        <h3>xcxplus</h3>
                     </div>
                     <div className="login-cnt">
                         <div>
-                            <Form horizontal onSubmit={this.handleSubmit.bind(this)}>
+                            <Form onSubmit={this.handleSubmit.bind(this)}>
                                 {this.message}
                                 <FormItem label="">
                                     {usernameProps(<Input placeholder="请输入账户名"/>)}
