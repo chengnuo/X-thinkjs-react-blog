@@ -51,7 +51,7 @@ export default class UserLogin extends Component {
                     required: true,
                     message: '请输入密码'
                 },
-        
+
             ]
         });
         const agreementProps = getFieldDecorator('agreement', {
@@ -59,7 +59,7 @@ export default class UserLogin extends Component {
             initialValue: "" ? true : false
         });
         return (
-            <div style={{overflow: 'hidden'}}>
+            <div style={{overflow: 'hidden'}} className="login-bg" >
                 <div className="login-main">
                     <div className="login-title">
                         <h3>数由管理后台</h3>
