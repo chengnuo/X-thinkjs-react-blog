@@ -4,7 +4,7 @@
 // react 相关库
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import { fetch } from "UTILS";
 // antd 组件
 import { DatePicker, message } from 'antd';
 
@@ -21,7 +21,13 @@ export default class Home extends React.Component {
     this.setState({ date });
   }
   test() {
-    fetch('/api/aa').then(res=> res.json()).then(res => {alert(JSON.stringify(res));})
+    //fetch('/api/aa').then(res=> res.json()).then(res => {alert(JSON.stringify(res));})
+    fetch('/api/index/fuck',{
+        method:"post",
+    })
+    .then(res => {
+        console.log(res);
+    })
   }
   render() {
     return (

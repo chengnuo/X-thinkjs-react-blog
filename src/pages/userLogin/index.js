@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import {Button, Form, Input, Checkbox, Alert} from "antd";
 
+import { fetch } from "UTILS";
+
 const createForm = Form.create;
 const FormItem = Form.Item;
 @createForm()
@@ -24,7 +26,7 @@ export default class UserLogin extends Component {
                 return;
             }
             if(values) {
-
+                fetch('/api/index/fuck').then(res=> res.json()).then(res => {console.log(JSON.stringify(res));})
             }
         });
     }

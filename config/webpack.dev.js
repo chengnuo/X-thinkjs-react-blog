@@ -29,11 +29,12 @@ module.exports = Object.assign(commonConfig, {
         port: PORT,
         proxy: {
             '/api/*': {
-                target: 'http://192.168.8.160:20160/',
+                target: 'http://127.0.0.1:8360/',
                 pathRewrite: {
-                    '^/api': ''
+                    //'^/api': ''
                 },
-                secure: false
+                secure: false,
+                changeOrigin: true,
             }
         }
     }

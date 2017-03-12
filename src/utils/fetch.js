@@ -4,7 +4,7 @@
 
 import fetch from 'isomorphic-fetch'
 
-import State from '../containers/Layouts/state'
+//import State from '../containers/Layouts/state'
 
 /**
  * @param { String } url 异步请求地址
@@ -16,7 +16,7 @@ export default  (url, data, props, pending) => {
 
     // 开发期使用 mock 服务器地址，统一加上/API
     // 通过 webpack-dev-server 代理去掉/API
-    url = __DEV__ ? `/API${url}` : url
+    url = __DEV__ ? `${url}` : url
     // @TODO: 联调测试
     // url = __DEV__ ? `http://192.168.9.76:1396${url}` : url
 
@@ -30,7 +30,11 @@ export default  (url, data, props, pending) => {
     // fetch 规范中只有 post 才能设置 body 属性
     // 当为 get 方法时需拼接在 url 上
     if(data && data['body']) {
-        if(data['method'] && data['method'].toLowerCase() === 'post') { // post
+        if(
+            (data['method'] && data['method'].toLowerCase() === 'post')
+             ||
+            (data['method'] && data['method'].toLowerCase() === 'put') 
+        ) { // post,put
             /*let formData = new FormData()
             let body = data.body
             for(let o in body) {
@@ -39,7 +43,7 @@ export default  (url, data, props, pending) => {
             data.body = formData */
             // @todo: mock
             data.body = JSON.stringify(data.body)
-            
+
         } else { // get
             let queryString = []
             for(let i in data.body) {
@@ -70,16 +74,16 @@ export default  (url, data, props, pending) => {
     }, data)
 
     // 显示loading图标
-    props && State.showLoading()
+    //props && State.showLoading()
 
     return new Promise(function (resolve, reject) {
-        
+
         fetch(url, data)
                 .then(res=> res.json())  // 数据接口统一为 json
                 .then(res => {
                     // 隐藏loading图标
-                    props && State.hideLoading()
-                    if(res.IsSuccess) {
+                    //props && State.hideLoading()
+                    if(res.errno == "0") {
                         resolve(res)
                     } else {
                         //alert(`错误代码：${res.ResultCode}, 原因：${res.Message}`)
