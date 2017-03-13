@@ -4,7 +4,7 @@
 
 import fetch from 'isomorphic-fetch'
 
-//import State from '../containers/Layouts/state'
+import State from 'PAGES/Layouts/state';
 
 /**
  * @param { String } url 异步请求地址
@@ -33,7 +33,7 @@ export default  (url, data, props, pending) => {
         if(
             (data['method'] && data['method'].toLowerCase() === 'post')
              ||
-            (data['method'] && data['method'].toLowerCase() === 'put') 
+            (data['method'] && data['method'].toLowerCase() === 'put')
         ) { // post,put
             /*let formData = new FormData()
             let body = data.body
@@ -74,7 +74,7 @@ export default  (url, data, props, pending) => {
     }, data)
 
     // 显示loading图标
-    //props && State.showLoading()
+    props && State.showLoading()
 
     return new Promise(function (resolve, reject) {
 
@@ -82,7 +82,7 @@ export default  (url, data, props, pending) => {
                 .then(res=> res.json())  // 数据接口统一为 json
                 .then(res => {
                     // 隐藏loading图标
-                    //props && State.hideLoading()
+                    props && State.hideLoading()
                     if(res.errno == "0") {
                         resolve(res)
                     } else {
