@@ -3,6 +3,9 @@ import {Button, Form, Input, Checkbox, Alert} from "antd";
 
 import { fetch,ruleType } from "UTILS";
 
+import md5 from "md5";
+
+
 const createForm = Form.create;
 const FormItem = Form.Item;
 @createForm()
@@ -28,7 +31,10 @@ export default class UserLogin extends Component {
             if(values) {
                 fetch('/api/user/login',{
                     "method":"post",
-                    "body":values
+                    "body":{
+                        "email":values.email,
+                        "password":md5(values.password)
+                    }
                 })
                 .then(res => {
                     console.log(res);
