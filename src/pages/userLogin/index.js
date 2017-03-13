@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {Button, Form, Input, Checkbox, Alert} from "antd";
 
-import { fetch } from "UTILS";
+import { fetch,ruleType } from "UTILS";
 
 const createForm = Form.create;
 const FormItem = Form.Item;
@@ -26,7 +26,13 @@ export default class UserLogin extends Component {
                 return;
             }
             if(values) {
-                fetch('/api/index/fuck').then(res=> res.json()).then(res => {console.log(JSON.stringify(res));})
+                fetch('/api/user/login',{
+                    "method":"post",
+                    "body":values
+                })
+                .then(res => {
+                    console.log(res);
+                })
             }
         });
     }
@@ -34,14 +40,14 @@ export default class UserLogin extends Component {
     render() {
         const {getFieldDecorator} = this.props.form;
         let {message, loading} = this.props;
-        const usernameProps = getFieldDecorator('username', {
+        const emailProps = getFieldDecorator('email', {
             initialValue: "",
             rules: [
                 {
                     required: true,
                     message: '请输入账户名'
                 },
-
+                ruleType("email")
             ]
         });
         const passwordProps = getFieldDecorator('password', {
@@ -53,10 +59,10 @@ export default class UserLogin extends Component {
 
             ]
         });
-        const agreementProps = getFieldDecorator('agreement', {
-            valuePropName: 'checked',
-            initialValue: "" ? true : false
-        });
+        // const agreementProps = getFieldDecorator('agreement', {
+        //     valuePropName: 'checked',
+        //     initialValue: "" ? true : false
+        // });
         return (
             <div style={{overflow: 'hidden'}} className="login-bg" >
                 <div className="login-main">
@@ -68,14 +74,16 @@ export default class UserLogin extends Component {
                             <Form onSubmit={this.handleSubmit.bind(this)}>
                                 {this.message}
                                 <FormItem label="">
-                                    {usernameProps(<Input placeholder="请输入账户名"/>)}
+                                    {emailProps(<Input placeholder="请输入账户名"/>)}
                                 </FormItem>
                                 <FormItem label="">
                                     {passwordProps(<Input type="password" placeholder="请输入密码"/>)}
                                 </FormItem>
-                                <FormItem>
+                                {/*
+                                    <FormItem>
                                     {agreementProps(<Checkbox >记住账号</Checkbox>)}
-                                </FormItem>
+                                    </FormItem>
+                                */}
                                 <FormItem wrapperCol={{span: 17, offset: 7}}>
                                     <Button style={{width: 165}}
                                             loading={loading}
